@@ -1,53 +1,51 @@
+import axios from "axios";
 import { useState } from "react";
 import styles from "./App.module.css";
 import Cards from "./components/Cards.jsx";
 import Nav from "./components/Nav";
-import axios from "axios";
-import { Route, Routes } from "react-router-dom";
+//import axios from "axios";
+//import { Routes } from "react-router-dom";
 
 function App() {
   const [characters, setCharacters] = useState([]);
 
- async function onSearch (id){
-  try{
-     const data = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
-      
-        
-        let existe = characters.filter((ch)=> ch.id === id)
-        console.log(existe)
-        if(existe){
-          alert('Ya Existe')
+  function onSearch(id) {
+    axios(`https://rickandmortyapi.com/api/character/${id}`)
+    .then(
+      ({ data }) => {
+        if (data.name) {
+          let existe = characters.find((ch) => ch.id === data.id);
+          if (existe) {
+            alert("Ya hay personajes con ese ID");
+          } else {
+            setCharacters((oldChars) => [...oldChars, data]);
+          }
         }else{
-          setCharacters((oldChars) => [...oldChars, data]);
+          window.alert('No hay personajes con  ese id')
         }
-        
-      
-  }catch (error) {
-        // handle error
-        console.log(error);
-      };
-    }
+      }
+    );
+  }
+
+  console.log(characters);
 
   const onClose = (id) => {
     setCharacters((oldChars) => {
-      return oldChars.filter((item) => item.id !== id);
+      return oldChars.filter((ch) => ch.id !== id);
     });
   };
+
   return (
-    
     <div className={styles.App}>
-      <Routes>
-        {/* <Route path="/" element={Home}></Route>
+      <Nav onSearch={onSearch} />
+
+      {/* <Route path="/" element={Home}></Route>
         <Route path="/" element={}></Route>
         <Route path="/" element={Home}></Route> */}
 
-          <Nav onSearch={onSearch} />
-         <Cards onClose={onClose} characters={characters} />
+      <Cards onClose={onClose} characters={characters} />
 
       <hr />
-      </Routes>
-    
-    
     </div>
   );
 }
