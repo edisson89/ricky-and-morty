@@ -5,7 +5,7 @@ export default function Card(props) {
    const {id,name, species,gender,image,onClose} = props
    return (
       <div className={styles.card}>
-         <Link to='/detail'>
+         <Link to={`/detail/${id}`}>
           <button id="cardButton" onClick={()=>onClose(id)}>X</button>
          <h2>{name}</h2>
          <h2>{species}</h2>
