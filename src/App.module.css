@@ -7,12 +7,14 @@ html {
 
 .container{
   display: flex;
-  background-color: rgb(142, 157, 160);
+  
   height: 100vh;
   
 }
 .App {
   display: flex;
+  background-image: linear-gradient(180deg, #479cb1 0, #57934b 16.67%, #15a436 33.33%, #388d53 50%, #2a9158 66.67%, #417f43 83.33%, #63c23d 100%);
+  min-height:100vh ;
   margin: 0%;
   flex-direction: column;
   text-align: center;
@@ -45,7 +47,7 @@ html {
   margin:1%;
   height:fit-content ;
   border-radius: 8px;
-  background-image: linear-gradient(180deg, #63c84e 0, #34a01e 16.67%, #15a436 33.33%, #388d53 50%, #2a9158 66.67%, #417f43 83.33%, #63c23d 100%);
+  background-image: linear-gradient(180deg, #63c84e 0, #3b735d 16.67%, #15a436 33.33%, #73c18c 50%, #68927b 66.67%, #d2b74d 83.33%, #4cf10b 100%);
 
 }
 .cards{
@@ -59,4 +61,9 @@ padding: 1%;
   height: 240px;
   border-radius:2% ;
 
+}
+.home{
+  display: flex;
+  align-items: center;
+  margin: 1%;
 }
