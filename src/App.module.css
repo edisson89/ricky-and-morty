@@ -67,3 +67,6 @@ padding: 1%;
   align-items: center;
   margin: 1%;
 }
+.error{
+  background-color: red;
+}
