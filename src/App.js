@@ -12,19 +12,22 @@ import About from "./components/About";
 import Loading from "./components/Loading";
 
 function App() {
+  const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
   const PASSWORD = "Testing123*";
-  const USERNAME = "ejemplo12@gmail.com";
+  const EMAIL = "ejemplo12@gmail.com";
 
   const location = useLocation();
-  const navigate = useNavigate();
 
   function login(input) {
-    if (input.password === PASSWORD && input.username === USERNAME) {
+    
+    if (input.password === PASSWORD && input.email === EMAIL) {
       setAccess(true);
       navigate("/home");
+      return alert("Ingreso Correcto");
     }
+    return alert('Corrige tus datos') 
   }
 
   function logout() {
