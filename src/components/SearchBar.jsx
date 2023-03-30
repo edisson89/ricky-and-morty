@@ -21,7 +21,8 @@ export default function SearchBar({ onSearch }) {
         <button onClick={() => onSearch(id)}>Agregar</button>
       </NavLink>
        <NavLink to="/home">
-        <button onClick={() => onSearch(getRandom())}>Ramdom</button>
+        
+        <button onClick={() => onSearch(getRandom())}>Random</button>
       </NavLink>
      
     </div>
