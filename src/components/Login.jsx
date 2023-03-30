@@ -16,21 +16,7 @@ const Login = ({ login }) => {
   const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
   const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
 
- 
-
-  function handleChange(event){
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value,
-    });
-    setError(validate({
-        ...input,
-        [event.target.name]: event.target.value,
-      })
-    );
-  }
-  
- function validate(input) {
+  function validate(input) {
     const error = {};
 
     if (!input.email) {
@@ -44,6 +30,20 @@ const Login = ({ login }) => {
     }
     return error;
   }
+
+  function handleChange(event) {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+    setError(
+      validate({
+        ...input,
+        [event.target.name]: event.target.value,
+      })
+    );
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     const aux = Object.keys(error);
@@ -56,20 +56,16 @@ const Login = ({ login }) => {
         email: "",
         password: "",
       });
-
-      login(input);
-      return alert("OK");
-    }
+      return login(input);
+    };
 
     return alert("Error");
   }
   return (
     <div className={styles.login}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.loginInput} name="email">
-          Email: 
-          <br />
-        </label>
+        <label className={styles.loginInput}>Email:</label>
+        <br />
         <input
           className={styles.loginInput}
           value={input.email}
@@ -83,11 +79,10 @@ const Login = ({ login }) => {
 
         <label className={styles.loginInput} name="pasword">
           Password:
-          <br />
         </label>
+        <br />
         <input
           className={styles.loginInput}
-          
           name="password"
           onChange={handleChange}
           value={input.password}
@@ -96,11 +91,11 @@ const Login = ({ login }) => {
         <br />
 
         {error.password && <p className={styles.error}>{error.password}</p>}
-
+        <br />
         {Object.keys(error).length === 0 ? (
-          <Link to="/home">
-            <button type="submit">Enviar</button>
-          </Link>
+          
+            <button type="submit">Ingresar</button>
+          
         ) : (
           <h2>Ingrese sus datos</h2>
         )}
