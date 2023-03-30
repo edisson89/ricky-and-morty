@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Cards from "./components/Cards.jsx";
 
@@ -13,20 +13,25 @@ import Loading from "./components/Loading";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [access, setAccess] = useState(false);
+  const PASSWORD = "Testing123*";
+  const USERNAME = "ejemplo12@gmail.com";
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [access, setAccess] = useState(false);
-  const username = "ejemplo@gmail.com";
-  const password = "1password";
-
   function login(input) {
-    if (input.password === password && input.username === username) {
+    if (input.password === PASSWORD && input.username === USERNAME) {
       setAccess(true);
       navigate("/home");
     }
   }
+
+  function logout() {
+    setAccess(false);
+    navigate("/");
+  }
+
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
@@ -48,26 +53,26 @@ function App() {
       });
   }
 
-  const onClose = (id) => {
+  function onClose(id) {
     setCharacters((oldChars) => {
       return oldChars.filter((ch) => ch.id !== id);
     });
-  };
+  }
 
   return (
     <div className={styles.App}>
-      {location.pathname === "/" ? null : <Nav onSearch={onSearch} />}
-      <Nav onSearch={onSearch} />
+      {location.pathname === "/" ? null : (
+        <Nav onSearch={onSearch} logout={logout} />
+      )}
 
       <Routes>
         <Route path="/" element={<Login login={login} />}></Route>
-
         <Route
           path="/home"
           element={<Cards onClose={onClose} characters={characters} />}
         ></Route>
-        <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="/loading" element={<Loading />}></Route>
       </Routes>
 
