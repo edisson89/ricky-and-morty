@@ -70,7 +70,9 @@ html {
 .cards {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   background-image: url("./assets/fondoCards.png");
+  justify-content: center;
 }
 .image {
   padding: 1%;
