@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "../App.module.css";
 
-const Login = ({login}) => {
+const Login = ({ login }) => {
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -12,31 +12,13 @@ const Login = ({login}) => {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
 
-  const regexEmail =
-    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-  const regexPassword = / ^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$ /;
+  const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
 
+ 
 
-  function validate(input) {
-    const error = {};
-
-    if (!input.email) {
-      error.email = "Debe haber un Email";
-    } else if (!input.password) {
-      error.password = "Debe haber un Password";
-    } 
-    //else if (!regexEmail.test(input.email)) {
-    //   error.email = "Debe haber un Email valido";
-    // } else if (!regexPassword.test(input.password)) {
-    //   error.password = "Debe haber un Password valido";
-    // }
-    return error;
-  }
-
-  function handleChange(event) {
-      event.preventDefault()
+  function handleChange(event){
     setInput({
       ...input,
       [event.target.name]: event.target.value,
@@ -48,9 +30,21 @@ const Login = ({login}) => {
       })
     );
   }
-
   
+ function validate(input) {
+    const error = {};
 
+    if (!input.email) {
+      error.email = "Debe haber un Email";
+    } else if (!input.password) {
+      error.password = "Debe haber un Password";
+    } else if (!regexEmail.test(input.email)) {
+      error.email = "Debe haber un Email valido";
+    } else if (!regexPassword.test(input.password)) {
+      error.password = "Debe haber un Password valido";
+    }
+    return error;
+  }
   function handleSubmit(e) {
     e.preventDefault();
     const aux = Object.keys(error);
@@ -63,41 +57,54 @@ const Login = ({login}) => {
         email: "",
         password: "",
       });
+
       login(input);
       return alert("OK");
     }
-    navigate("/");
+
     return alert("Error");
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label name="email">Email: </label>
-          <input
-          type="email"
-            value={input.email}
-            name="email"
-            onChange={handleChange}
-            placeholder="Ingrese su Email"
-          />
-       { error.email &&  <p className={styles.error}>{error.email}</p> }
-        
-        <label name="pasword">Password</label>
+    <div className={styles.login}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.loginInput} name="email">
+          Email: 
+          <br />
+        </label>
         <input
-          type='password'
+          className={styles.loginInput}
+          value={input.email}
+          name="email"
+          onChange={handleChange}
+          placeholder="Ingrese su Email"
+        />
+        <br />
+
+        {error.email && <p className={styles.error}>{error.email}</p>}
+
+        <label className={styles.loginInput} name="pasword">
+          Password:
+          <br />
+        </label>
+        <input
+          className={styles.loginInput}
+          
           name="password"
           onChange={handleChange}
           value={input.password}
           placeholder="Ingrese su Contraseña"
         />
-  {error.password &&  <p className={styles.error}>{error.password}</p>}
-     
+        <br />
 
-        {Object.keys(error).length === 0 ? 
-      (  <Link to="/home">
-        <button type="submit">Enviar</button>
-        </Link> ): <h2>Revise sus datos</h2>
-        }
+        {error.password && <p className={styles.error}>{error.password}</p>}
+
+        {Object.keys(error).length === 0 ? (
+          <Link to="/home">
+            <button type="submit">Enviar</button>
+          </Link>
+        ) : (
+          <h2>Ingrese sus datos</h2>
+        )}
       </form>
     </div>
   );
