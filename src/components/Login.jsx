@@ -23,9 +23,8 @@ const Login = ({ login }) => {
       ...input,
       [event.target.name]: event.target.value,
     });
-    setError(
-      validate({
-        ...error,
+    setError(validate({
+        ...input,
         [event.target.name]: event.target.value,
       })
     );
