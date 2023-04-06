@@ -1,11 +1,14 @@
-import { ADD_FAV } from "./action.types";
+import { ADD_FAV, REMOVE_FAV } from "./action.types";
 
-export function addFav() {
+export function addFav(data) {
     return {
         type: ADD_FAV,
-        payload:character
+        payload:data
     }
 }
-export  function removeFav{
-    return{}
+export  function removeFav(id){
+    return{
+        type: REMOVE_FAV,
+        payload: id
+    }
 }
