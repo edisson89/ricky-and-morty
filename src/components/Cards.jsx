@@ -1,25 +1,26 @@
-import React from 'react';
-import Card from './Card'
+import React from "react";
+import Card from "./Card";
 import styles from "../App.module.css";
+import { useSelector } from "react-redux";
 
-export default function Cards({ characters, onClose }) {
- 
- 
+export default function Cards({ onClose }) {
+  const state = useSelector((state) => state.reducer.data);
+  console.log('cards', state)
   return (
     <div className={styles.cards}>
-      {characters &&
-       characters.map(({ name, species, gender, image, id }) => (
-       
-        <Card
-          id={id}
-          key={id}
-          name={name}
-          species={species}
-          gender={gender}
-          image={image}
-          onClose={onClose}
-        />
-      ))}
+      {state &&
+        state.map((data) => (
+          <div key={data.id}>
+            <Card
+              id={data.id}
+              name={data.name}
+              species={data.species}
+              gender={data.gender}
+              image={data.image}
+              onClose={onClose}
+            />
+          </div>
+        ))}
     </div>
-  )
+  );
 }
