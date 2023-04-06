@@ -10,56 +10,50 @@ import Login from "./components/Login";
 import Detail from "./components/Detail";
 import About from "./components/About";
 import Loading from "./components/Loading";
+import { useDispatch} from "react-redux";
+import { add_fav, remove_fav } from "./redux/reducer";
 
 function App() {
   const navigate = useNavigate();
-  const [characters, setCharacters] = useState([]);
+
   const [access, setAccess] = useState(false);
   const PASSWORD = "Testing123*";
-  const EMAIL = "ejemplo12@gmail.com";
+  const EMAIL = "ejemplo123@gmail.com";
 
   const location = useLocation();
 
+  const dispatch = useDispatch();
+ //const selector =  useSelector((state)=> state.reducer.data.data)
+
   function login(input) {
-    
     if (input.password === PASSWORD && input.email === EMAIL) {
       setAccess(true);
       navigate("/home");
       return alert("Ingreso Correcto");
     }
-    return alert('Corrige tus datos') 
+    return alert("Corrige tus datos");
   }
 
   function logout() {
     setAccess(false);
-    navigate("/");
+    navigate("/home");
   }
 
   useEffect(() => {
-    !access && navigate("/");
+    !access && navigate("/home");
   }, [access]);
 
-  function onSearch(id) {
-    axios
-      .get(`https://rickandmortyapi.com/api/character/${id}`)
-      .then(({ data }) => {
-        if (data.name) {
-          let existe = characters.find((ch) => ch.id === data.id);
-          if (existe) {
-            alert("Ya hay personajes con ese ID");
-          } else {
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
-        } else {
-          window.alert("No hay personajes con  ese id");
-        }
-      });
-  }
+ async function onSearch (id){
+  const response = await axios.get(`https://rickandmortyapi.com/api/character/${id}`)
+     let{data} = response
+  console.log(data)
+        dispatch(add_fav(data ));
+  };
+  
+  
 
   function onClose(id) {
-    setCharacters((oldChars) => {
-      return oldChars.filter((ch) => ch.id !== id);
-    });
+    dispatch(remove_fav({ id }));
   }
 
   return (
@@ -70,10 +64,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login login={login} />}></Route>
-        <Route
-          path="/home"
-          element={<Cards onClose={onClose} characters={characters} />}
-        ></Route>
+        <Route path="/home" element={<Cards onClose={onClose} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
         <Route path="/loading" element={<Loading />}></Route>
