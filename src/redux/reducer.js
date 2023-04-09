@@ -23,16 +23,22 @@ export const rootReducer = createSlice({
       }
     },
     remove_fav: (state, action) => {
-      console.log("entro", action.payload);
-      
-    let result =  state.data.filter(data => data.id !== action.payload.id);
-    
-      state.data = result
-    
+      let result = state.data.find((data) => data.id === action.payload.id);
+
+      state.data.splice(state.data.indexOf(result), 1);
+    },
+    edit_fav: (state, action) => {
+      let edit = state.data.find((data) => data.id === action.payload.id);
+      if (edit) {
+        return {
+          ...state,
+          data:[ edit, action.payload],
+        };
+      }
     },
   },
 });
 
-export const { add_fav, remove_fav } = rootReducer.actions;
+export const { add_fav, remove_fav,edit_fav } = rootReducer.actions;
 
 export default rootReducer.reducer;
