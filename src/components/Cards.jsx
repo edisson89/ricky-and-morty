@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 export default function Cards({ onClose }) {
   const state = useSelector((state) => state.reducer.data);
-  console.log('cards', state)
+  
   return (
     <div className={styles.cards}>
       {state &&
