@@ -6,6 +6,23 @@ html {
 *:after {
   box-sizing: inherit;
 }
+button{
+  border-radius: 10px;
+  border-color: rgb(194, 240, 240);
+  cursor: pointer;
+  background-color: rgb(221, 233, 229);
+}
+button:hover{
+  opacity:0.9;
+  background-color:white;
+}
+input{
+  
+  border-color: rgb(217, 243, 243);
+  border-radius: 10px;
+  margin: 2%;
+}
+
 
 .container {
   display: flex;
@@ -35,26 +52,45 @@ html {
 }
 .navbar {
   display: flex;
+  position: fixed;
+  cursor: pointer;
   width: 100%;
   height: 4rem;
   background-color: rgb(47, 247, 180);
-  justify-content: flex-end;
-  align-content: center;
-  border: red solid 3px;
+  justify-content: space-between;
+  align-content: center; 
+  justify-content: center;
+  align-items: center;
+  background-image: url(./assets/fondoCards.png);
+  animation: myAnim 10s ease 0s infinite normal backwards;
+}
+@keyframes myAnim {
+	0% {
+		background-position: center top;
+		background-size: 100%;
+	}
+
+	100% {
+		background-position: center top;
+		background-size: 150%;
+	}
 }
 .searchBar {
+
+  display:flex;
   margin: 0.1%;
-  padding: 0.9rem;
+  padding: 0.3rem;
   height: 3.8rem;
   align-self: center;
   align-items: center;
   justify-content: center;
-  border: solid 3px yellow;
+  
 }
 .card {
   border: solid purple 2px;
   margin: 1%;
-  height: fit-content;
+  width: 300px;
+  height: 95vh;
   border-radius: 8px;
   background-image: linear-gradient(
     180deg,
@@ -70,6 +106,7 @@ html {
 .cards {
   display: flex;
   width: 100%;
+  margin-top: 2rem;
   flex-wrap: wrap;
   background-image: url("./assets/fondoCards.png");
   justify-content: center;
@@ -86,7 +123,7 @@ html {
   margin: 1%;
 }
 .error {
-  color: red;
+  
   font-size: 18px;
 }
 .login {
@@ -113,4 +150,22 @@ html {
   padding: 0.4rem;
   border-radius: 5px;
   width: calc(100% - 1px);
+}
+.edit{
+  display: flex;
+  justify-content: center;
+  margin: 2rem
+  
+}
+@media screen and (min-device-width: 320px)
+and (max-device-width: 580px) {
+ .navbar{
+
+  justify-content: space-evenly;
+  margin:  0.4% ;
+ }
+ .card{
+
+  width: max-content;
+ }
 }
