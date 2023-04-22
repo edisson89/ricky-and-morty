@@ -3,14 +3,16 @@ import axios from "axios";
 import  { NavLink, useParams } from "react-router-dom";
 import styles from "../App.module.css";
 
+
 const Detail = () => {
   const [character, setCharacter] = useState({});
- 
+
   const { id } = useParams();
+  
   useEffect(() => {
     axios.get(`https://rickandmortyapi.com/api/character/${id}`)
       .then(({ data }) => {
-        if (data.name) {
+              if (data.name) {
           setCharacter(data);
         } else {
           window.alert("No hay personajes con  ese id");
@@ -24,7 +26,9 @@ const Detail = () => {
       <NavLink to='/home'>
         <button >Regresar Home</button>
       </NavLink>
-      
+      <NavLink to={`/edit/${id}`}>
+      <button>Editar</button>
+      </NavLink>
       <h2>{character.name}</h2>
       <h2>{character.species}</h2>
       <h2>{character.status}</h2>
