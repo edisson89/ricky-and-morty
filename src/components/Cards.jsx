@@ -2,12 +2,15 @@ import React from "react";
 import Card from "./Card";
 import styles from "../App.module.css";
 import { useSelector } from "react-redux";
+import Character from "./Character";
 
 export default function Cards({ onClose }) {
   const state = useSelector((state) => state.reducer.data);
   
   return (
-    <div className={styles.cards}>
+    <>
+   
+     <div className={styles.cards}>
       {state &&
         state.map((data) => (
           <div key={data.id}>
@@ -22,5 +25,10 @@ export default function Cards({ onClose }) {
           </div>
         ))}
     </div>
+    <div className={styles.cards}>
+      <Character/>
+    </div>
+    </>
+   
   );
 }
