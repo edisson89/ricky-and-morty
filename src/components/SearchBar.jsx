@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch }) {
   return (
 
    <div>
-      <input onChange={handleChange} name="search" type="search" value={id} />
+      <input onChange={handleChange} name="search" type="search" placeholder="Ingrese su id #"  value={id} />
       <NavLink to="/home">
         <button onClick={() => onSearch(id)}>Agregar</button>
       </NavLink>
