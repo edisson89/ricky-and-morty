@@ -39,7 +39,7 @@ function App() {
 
   function logout() {
     setAccess(false);
-    navigate("/home");
+    navigate("/");
   }
 
   useEffect(() => {
@@ -82,12 +82,12 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {location.pathname === "/" ? null : (
+      {location.pathname === "/" ? <Login login={login} /> : (
         <Nav onSearch={onSearch} logout={logout} />
       )}
 
       <Routes>
-        <Route path="/" element={<Login login={login} />}></Route>
+        {/* <Route path="/" element={<Login login={login} />}></Route> */}
         <Route path="/home" element={<Cards onClose={onClose} />}></Route>
         <Route path="/character" element={<Character  />}></Route>
         <Route path="/about" element={<About />}></Route>
