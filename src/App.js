@@ -43,7 +43,7 @@ function App() {
   }
 
   useEffect(() => {
-    !access && navigate("/home");
+    !access && navigate("/");
   }, [access]);
 
   async function onSearch(id) {
@@ -82,8 +82,8 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {location.pathname === "/" ? <Login login={login} /> : (
-        <Nav onSearch={onSearch} logout={logout} />
+      {location.pathname !== "/" ? <Nav onSearch={onSearch} logout={logout} /> : (<Login login={login} />
+        
       )}
 
       <Routes>
