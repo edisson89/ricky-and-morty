@@ -1,0 +1,224 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+button {
+  border-radius: 10px;
+  border-color: rgb(194, 240, 240);
+  cursor: pointer;
+  background-color: rgb(221, 233, 229);
+}
+button:hover {
+  opacity: 0.9;
+  background-color: white;
+}
+input {
+  border-color: rgb(217, 243, 243);
+  border-radius: 10px;
+  margin: 2%;
+}
+
+.container {
+  display: flex;
+
+  height: 100vh;
+}
+.App {
+  display: flex;
+  background-image: linear-gradient(
+    180deg,
+    #479cb1 0,
+    #57934b 16.67%,
+    #15a436 33.33%,
+    #388d53 50%,
+    #2a9158 66.67%,
+    #417f43 83.33%,
+    #63c23d 100%
+  );
+  min-height: 100vh;
+  width: 100%;
+  margin: 0%;
+  flex-direction: column;
+  text-align: center;
+}
+.cardClose {
+  display: none;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  cursor: pointer;
+  width: 100%;
+  height: 5rem;
+  background-color: rgb(171, 180, 177);
+  align-content: center;
+  align-items: center;
+  background-image: url(./assets/fondoCards.png);
+  animation: myAnim 8s ease 0s infinite normal backwards;
+}
+.detail{
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+  margin-top: 5rem;
+  padding: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f9f9f5;
+  
+ 
+  
+}
+.imageDetail{
+  width: 70%;
+  height: auto;
+  margin: 2rem;
+}
+@keyframes myAnim {
+  0% {
+    background-position: center top;
+    background-size: 100%;
+  }
+  50% {
+    background-position: center right;
+    background-size: 125%;
+  }
+  100% {
+    background-position: center left;
+    background-size: 150%;
+  }
+  50% {
+    background-position: center top;
+    background-size: 125%;
+  }
+}
+.searchBar {
+  display: flex;
+  margin: 0.1%;
+  padding: 0.3rem;
+  height: 3.8rem;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  border: solid purple 2px;
+  margin: 1%;
+  width: 300px;
+  height: 70vh;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    180deg,
+    #63c84e 0,
+    #3b735d 16.67%,
+    #15a436 33.33%,
+    #73c18c 50%,
+    #68927b 66.67%,
+    #d2b74d 83.33%,
+    #4cf10b 100%
+  );
+}
+.cards {
+  display: flex;
+  width: 100%;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  background-image: url("./assets/fondoCards.png");
+  justify-content: center;
+}
+.image {
+  padding: 1%;
+  width: 100%;
+  height: 240px;
+  border-radius: 2%;
+}
+.home {
+  display: flex;
+  align-items: center;
+  margin: 1%;
+}
+.inputSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.error {
+  font-size: 18px;
+}
+.login {
+  display: flex;
+  flex-wrap: calc(100% - 1);
+  background-image: linear-gradient(
+      rgba(218, 198, 52, 0.5),
+      rgba(65, 160, 54, 0.5)
+    ),
+    url("./assets/loginHenry.png");
+  background-color: transparent;
+  background-position: top;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+.form {
+  margin: 0.4rem;
+  width: 16rem;
+}
+.loginInput {
+  margin: 0.4rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  width: calc(100% - 1px);
+}
+.edit {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+@media screen and (min-device-width: 300px) and (max-device-width: 580px) {
+  .navbar {
+    display: flex;
+    margin: 0.4%;
+  }
+  
+  .card {
+  
+    height: 100vh;
+    margin-top: 0;
+   
+  }
+  .cards{
+    width: 100%;
+    margin-top: 2.5rem;
+    scroll-snap-type: mandatory;
+  }
+  .searchBar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 40%;
+    margin: 2%;
+  }
+  .searchInput {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 1%;
+    margin-top: 0%;
+  }
+  .input {
+    width: 50%;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .ramdom {
+    display: none;
+  }
+}
