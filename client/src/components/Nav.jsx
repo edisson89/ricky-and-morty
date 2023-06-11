@@ -4,10 +4,10 @@ import styles from "../App.module.css";
 import { NavLink } from "react-router-dom";
 
 const Nav = ({ onSearch, logout }) => {
-  const screenWidthForMobileMenu = 768
+  const screenWidthForMobileMenu = 768;
   return (
     <div className={styles.navbar}>
-      <div className={styles.nabvarcol}>
+      <div className={styles.navbarLinks}>
         <NavLink className={styles.home} to="/home">
           <button>Home</button>
         </NavLink>
@@ -21,8 +21,8 @@ const Nav = ({ onSearch, logout }) => {
       </div>
 
       <div className={styles.searchBar}>
-        <SearchBar onSearch={onSearch} screenWidth={screenWidthForMobileMenu} />
-        <button onClick={logout}>Logout</button>
+        <SearchBar onSearch={onSearch} screenWidth={screenWidthForMobileMenu} logout={logout}/>
+        
       </div>
     </div>
   );
