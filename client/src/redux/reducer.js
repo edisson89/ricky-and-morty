@@ -26,6 +26,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
     case REMOVE_HOME:
       const rmHome = state.home.filter((item) => item.id !== payload);
+
       return {
         ...state,
         home: rmHome,
@@ -50,7 +51,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
         myFavoritesOrigin: payload,
       };
     case REMOVE_FAV:
-      
       return {
         ...state,
         myFavorites: payload,
