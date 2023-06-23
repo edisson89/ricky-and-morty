@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from "../App.module.css";
 
 const About = () => {
   return (
-    <div>
+    <div className={styles.about}>
       <h1>Sobre de nosotros</h1>
       <p>
       Plantilla de la página 
