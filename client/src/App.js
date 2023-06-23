@@ -60,16 +60,16 @@ function App() {
   }
 
   function onClose(id) {
-    dispatch(removeData({ id }));
+    dispatch(removeData(id ));
   }
 
   //Estado inicial home
   async function character() {
     try {
       const response = await axios.get(
-        `https://rickandmortyapi.com/api/character/`
+        'http://localhost:3001/rickandmorty/data'
       );
-      let { data } = await response;  
+      let { data } = response;  
        
         dispatch(addHome(data.results));
     } catch (error) {
@@ -93,8 +93,8 @@ function App() {
         <Route path="/home" element={<Cards onClose={onClose} />}></Route>
         <Route path="/characters" element={<Characters />}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/edit/:id" element={<Edit />}></Route>
         <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="/edit/:id" element={<Edit />}></Route>
         <Route path="/loading" element={<Loading />}></Route>
         <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
