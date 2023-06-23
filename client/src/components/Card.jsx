@@ -11,15 +11,15 @@ export default function Card(props) {
   const { id, name, species, gender, image, onClose } = props;
   const [fav, setFav] = useState(false);
  const dispatch = useDispatch()
- const {favorites} = useSelector((state) => state)
+ const favorites = useSelector((state) => state.myFavorites)
 
 
   function handleFav() {
     if (fav) {
-      setFav(false);
+      setFav(true);
       dispatch(removeFav(id));
     } else {
-      setFav(true);
+      setFav(false);
      dispatch(addFav(props)) ;
     }
   }
