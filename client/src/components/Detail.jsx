@@ -9,9 +9,10 @@ const Detail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`https://rickandmortyapi.com/api/character/${id}`)
-      .then(({ data }) => {
+    axios   
+      .get(`http://localhost:3001/rickandmorty/detail/${id}`)
+      .then(({data} ) => {
+        
         if (data.name) {
           setCharacter(data);
         } else {
@@ -40,9 +41,7 @@ const Detail = () => {
       <NavLink to="/home">
         <button>Regresar Home</button>
       </NavLink>
-      <NavLink to={`/edit/${id}`}>
-        <button>Editar</button>
-      </NavLink>
+     
       <h2>{character.name}</h2>
       <h2>{character.species}</h2>
       <h2>{character.status}</h2>
