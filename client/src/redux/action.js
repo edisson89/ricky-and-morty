@@ -12,10 +12,10 @@ import {
 } from "./action.types";
 import axios from "axios"
 
-export function addHome(character) {
+export function addHome(data) {
   return {
     type: ADD_HOME,
-    payload: character,
+    payload: data,
   };
 }
 export function removeHome(id) {
@@ -37,10 +37,10 @@ export function removeData(id) {
   };
 }
 
-export function addFav(data) {
+export function addFav(char) {
   return function (dispatch) {
     axios
-      .post("http://localhost:3001/rickandmorty/favs", data)
+      .post("http://localhost:3001/rickandmorty/favs", char)
       .then((response) => {
         return dispatch({
           type: ADD_FAV,
