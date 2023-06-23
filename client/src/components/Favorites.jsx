@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../App.module.css";
 import { filter, order, removeFav, reset } from "../redux/action";
-import CardCharacter from "./CardCharacter";
+import Card from "./Card";
+
 
 
 const Favorites = () => {
-  const { myFavorites} = useSelector((state) => state);
+  const myFavorites = useSelector((state) => state.myFavoritesOrigin);
  
   const dispatch = useDispatch();
-  function onCloseFav(id) {
+
+  function onClose(id) {
        dispatch(removeFav(id));
   }
   function handleOrder(e) {
@@ -25,6 +27,10 @@ const Favorites = () => {
   function resetBtn() {
     dispatch(reset());
   }
+  useEffect(() => {
+   onClose()
+  }, [myFavorites])
+  
   return (
     <div>
       <h1>Favoritos</h1>
@@ -53,14 +59,14 @@ const Favorites = () => {
          myFavorites.map((data) => {
          const {id} = data
           return (
-            <CardCharacter
+            <Card
               key={data.id}
-              id={data.id}
+              id={id}
               name={data.name}
               species={data.species}
               gender={data.gender}
               image={data.image}
-              onClose={()=>onCloseFav(id)}
+              onClose={()=>(id)}
             />
           );
         })}
