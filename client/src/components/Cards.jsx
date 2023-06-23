@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "./Card";
 import styles from "../App.module.css";
 import { useSelector } from "react-redux";
 import Characters from "./Characters";
+import CardCharacter from "./CardCharacter";
 
 export default function Cards({ onClose }) {
   const state = useSelector((state) => state.data);
@@ -14,7 +14,7 @@ export default function Cards({ onClose }) {
       {state &&
         state.map((data) => (
           <div key={data.id}>
-            <Card
+            <CardCharacter
               id={data.id}
               name={data.name}
               species={data.species}
