@@ -107,9 +107,22 @@ input {
   align-items: center;
   justify-content: center;
 }
+.about{
+  margin:5rem;
+  background-image: linear-gradient(
+    180deg,
+    #63c84e 0,
+    #3b735d 16.67%,
+    #15a436 33.33%,
+    #73c18c 50%,
+    #68927b 66.67%,
+    #d2b74d 83.33%,
+    #4cf10b 100%
+  );
+}
 .card {
   border: solid purple 2px;
-  margin: 1%;
+  margin: 5rem;
   width: 300px;
   height: 70vh;
   border-radius: 8px;
@@ -228,17 +241,20 @@ input {
     flex-direction: column;
     background-color: rgb(251, 245, 245);
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
   }
   .ramdom {
     display: none;
   }
   .modal{
     display: flex;
+    background-color: rgb(251, 245, 245);
+    opacity:0.9 ;
+    border-radius: 10px;
     flex-direction: column;
     justify-content:flex-end ;
     align-content:flex-end;
-    align-items: flex-end;
+    align-items: center;
     margin:2% ;
     padding: 2%;
   }
