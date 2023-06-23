@@ -9,6 +9,7 @@ import { addFav, removeFav } from "../redux/action";
 
 export default function CardCharacter(props) {
   const { id, name, species, gender, image, onClose } = props;
+  
   const [fav, setFav] = useState(false);
   const dispatch = useDispatch();
   const myfavorites = useSelector((state) => state.myfavorites);
@@ -22,12 +23,7 @@ export default function CardCharacter(props) {
       dispatch(addFav(props));
     }
   }
-  function superClose(id) {
-    
-    onClose()
-    dispatch(removeFav(id));
-  }
-  
+
 
   useEffect(() => {
     myfavorites &&
@@ -55,7 +51,7 @@ export default function CardCharacter(props) {
           </IconContext.Provider>
         </button>
       )}
-      <button name="button" onClick={() => superClose(id)}>
+      <button name="button" onClick={() => onClose(id)}>
         X
       </button>
       <NavLink to={`/detail/${id}`}>
